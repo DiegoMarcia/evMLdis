@@ -54,10 +54,6 @@ let rec print_list text pos =
 let check_format str =
     Str.string_match (Str.regexp "^\\(0x\\|0X\\)?\\(\\([a-f]\\|[A-F]\\|[0-9]\\)*\\)$") str 0 && String.length str mod 2 = 0;;
 
-let get_fromfile filename = let open Yojson.Basic.Util in
-    let from_file = Yojson.Basic.from_file filename in
-        from_file |> member "data" |> index 0 |> member "code" |> to_string;;
-
 let get_direct str =
     if check_format str then
         if String.sub str 0 2 = "0x" then

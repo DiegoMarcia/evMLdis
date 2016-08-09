@@ -14,7 +14,7 @@
     [
         {
             "name": "Ocaml-general",
-            "cmd": ["eval `opam config env` && ocamlfind ocamlc str.cma -annot -o evmdis -linkpkg -package yojson ${file_name} && rm -f ${file_base_name}.cmi ${file_base_name}.cmo"],
+            "cmd": ["ocamlc str.cma -annot -o ${file_base_name} ${file_name} && rm -f ${file_base_name}.cmi ${file_base_name}.cmo"],
             "file_regex": "[ ]*File \"(...*?)\", line ([0-9]*), characters ([0-9]*)-([0-9]*):",
             "working_dir": "${file_path}",
             "selector": "source.ml",
@@ -25,7 +25,7 @@
                 [
                     {
                         "name": "Run",
-                        "cmd": ["'${file_path}/evmdis' 0x00"]
+                        "cmd": ["'${file_path}/${file_base_name}' 0x00"]
                     }
                 ]
         }
